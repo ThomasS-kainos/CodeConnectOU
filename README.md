@@ -6,3 +6,5 @@ Install dependencies `npm install`
 
 Run application: `npm start`
 
+# Git Example
+## Authors
