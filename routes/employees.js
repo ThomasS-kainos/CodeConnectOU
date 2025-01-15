@@ -1,12 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const EmployeesService = require('../services/employeeService');
+const employeeService = new EmployeesService();
 
-const EmployeeService = require('../services/employeeService');
-const employeeService = new EmployeeService();
-
-
-// Read all employees
+// Route to read all employees
 router.get('/', (req, res) => {
     const employees = employeeService.getAllEmployees();
     res.render('employees', { employees: employees });
-  });
+});
+
+module.exports = router;
+
+

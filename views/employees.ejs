@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+</head>
+<body>
+    <h1>Employees List</h1>
+    <ul>
+        <% employees.forEach(employee => { %>
+            <li>
+                <strong><%= employee.name %></strong> - <%= employee.position %>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
