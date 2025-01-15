@@ -3,9 +3,25 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- link to favicon -->
+    <link rel="icon" href="public/stylesheets/images/favicon.webp" type="image/x-icon">
+
   </head>
   <body>
+    <header>
+      <img src="public/stylesheets/images/Kainos 800x250 Logo (Transparent BG).png" alt="Logo" class="logo">
+    </header>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <!-- link for the view employees page -->
+    <a href="views/user.ejs">
+      <button>View Employees</button>
+    </a>
+
+    <!-- footer -->
+    <%- include('/Users/tristanblackledge/CodeConnectOU/views/footer.ejs') %>
+
+    
   </body>
 </html>
