@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Kainos Employee App</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- link to favicon -->
+    <link rel="icon" href="/stylesheets/images/favicon.webp" type="image/x-icon">
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <img src="/stylesheets/images/Kainos 800x250 Logo (Transparent BG).png" alt="Logo" class="logo">
+    </header>
+    <h1>Kainos Employee App</h1>
+    <p>Welcome to The Kainos Employee App</p>
+    <!-- link for the view employees page -->
+    <a href="/user.ejs">
+      View Employees
+    </a>
+    </div>
+
+    <!-- footer -->
+    <%- include('/Users/tristanblackledge/CodeConnectOU/views/footer.ejs') %>
   </body>
 </html>
