@@ -1,12 +1,13 @@
 [
   {
     "id": 1,
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "salary": 50000,
-    "role": "Developer",
+    "name": "Shaun",
+    "email": "Shaun@example.com",
+    "salary": 12000,
+    "role": "Software Engineer",
     "num": "E001"
   },
+
   {
     "id": 2,
     "name": "Jane Smith",
@@ -88,3 +89,4 @@
     "num": "E011"
   }
 ]
+
