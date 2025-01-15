@@ -20,6 +20,8 @@ class EmployeesService {
     getAllEmployees() {
         return this.readEmployees();
     }
+
+    
 }
 
 module.exports = EmployeesService;
