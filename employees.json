@@ -2,7 +2,25 @@
   {
     "id": 1,
     "name": "Shaun",
-    "email": "shaun@test.com",
+    "address": "Belfast",
+    "salary": "12,000",
+    "role": "Software Engineer"
+  },
+
+  {
+    "id": 2,
+    "name": "Ciaran",
+    "address": "Tyrone",
+    "salary": "12,000",
+    "role": "Software Engineer"
+  },
+
+  {
+    "id": 3,
+    "name": "Tristan",
+    "address": "Europe",
+    "salary": "12,000",
     "role": "Software Engineer"
   }
 ]
+
