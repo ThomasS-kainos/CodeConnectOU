@@ -78,5 +78,13 @@
     "salary": 58000,
     "role": "HR Specialist",
     "num": "E010"
+  },
+  {
+    "id": 11,
+    "name": "Howard Thomas",
+    "email": "howard.thomas@example.com",
+    "salary": 70000,
+    "role": "Senior Specialist",
+    "num": "E011"
   }
 ]
