@@ -77,3 +77,34 @@ input[type="text"] {
 }
 
 
+h2 {
+  font: 24px, "Galano Grotessque";
+  color: #252d4F;
+}
+
+
+.logIn {
+  color: #252d4f;
+  font: 16px "Galano Grotessque"; 
+}
+
+.logIn label, .password label{
+  display: block;
+  margin-bottom: 8px;
+}
+
+.password {
+  color: #252d4f;
+  font: 16px "Galano Grotessque"; 
+}
+
+button[type="submit"] {
+  background-color: #1b2db5; 
+  color: white;      
+  margin-top: 8px;    
+  padding: 10px 20px;   
+  border: none; 
+  font: 16px "Galano Grotessque";        
+  cursor: pointer;        
+}
+
