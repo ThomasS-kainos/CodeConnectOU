@@ -30,13 +30,15 @@ class EmployeesService {
         }
     }
 
-    // Add new employee
+// Add new employee
     addEmployee(newEmployee) {
-        const employees = this.getAllEmployees();  // Get existing employees
+        const employees = this.readEmployees();
         employees.push(newEmployee);  // Add the new employee to the array
         this.writeEmployees(employees);  // Save updated employee list
-        return true;
+        return newEmployee;  // Return the new employee with the assigned id
     }
+
+
 }
 
 module.exports = EmployeesService;

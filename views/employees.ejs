@@ -31,50 +31,7 @@
             document.getElementById("employeeModal").style.display = "none";
         }
 
-        // Handle form submission via AJAX
-        function addEmployee(event) {
-            event.preventDefault(); // Prevent the default form submission
 
-            const form = event.target;
-            const formData = new FormData(form);
-
-            fetch('employees/add-employee', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Optionally update the table with the new employee data without reloading the page
-                        const tableBody = document.querySelector("table tbody");
-                        const newRow = document.createElement("tr");
-                        newRow.innerHTML = `
-                        <td>${data.employee.name}</td>
-                        <td>${data.employee.email}</td>
-                        <td>£ ${data.employee.salary}</td>
-                        <td>${data.employee.role}</td>
-                        <td>${data.employee.num}</td>
-                    `;
-                        tableBody.appendChild(newRow);
-
-                        // Close the modal
-                        closeModal();
-                    } else {
-                        alert('Error adding employee');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error adding employee');
-                });
-        }
-
-        window.onclick = function (event) {
-            const modal = document.getElementById("employeeModal");
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
     </script>
 </head>
 <body>
@@ -127,7 +84,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Add New Employee</h2>
-        <form id="addEmployeeForm" onsubmit="addEmployee(event)">
+        <form id="addEmployeeForm" action="/employees/add-employee" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -143,7 +100,7 @@
             <label for="num">Employee Number:</label>
             <input type="text" id="num" name="num" required>
 
-            <input type="submit" value="Add Employee">
+            <input type="submit" value="Add New Employee">
         </form>
     </div>
 </div>

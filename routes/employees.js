@@ -11,25 +11,23 @@ router.get('/', (req, res) => {
 });
 
 // Route to handle adding a new employee
-router.post('employees/add-employee', (req, res) => {
+router.post('/add-employee', (req, res) => {
     const { name, email, salary, role, num } = req.body;
 
-    // Validate the input data
     if (!name || !email || !salary || !role || !num) {
         return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
-    // Create a new employee object
     const newEmployee = { name, email, salary, role, num };
-
-    // Add the new employee using the service
     const success = employeeService.addEmployee(newEmployee);
 
     if (success) {
-        res.json({ success: true, employee: newEmployee });
+        res.redirect('/employees')
     } else {
         res.status(500).json({ success: false, message: 'Error adding employee' });
     }
+
+
 });
 
 module.exports = router;
