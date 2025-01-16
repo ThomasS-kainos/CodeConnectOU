@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Employees</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="icon" href="/stylesheets/images/favicon.webp" type="image/x-icon">
-</head>
-<body>
-    <%- include('./header.ejs') %>
-    <title>Employees</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <script>
         function searchTable() {
             const input = document.getElementById("searchInput").value.toLowerCase();
@@ -26,44 +22,132 @@
                 }
             });
         }
-    </script>
-    </head>
-    <body>
-    <h1>Employee List</h1>
 
-    <% if (employees && employees.length > 0) { %>
+        function openModal() {
+            document.getElementById("employeeModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("employeeModal").style.display = "none";
+        }
+
+        // Handle form submission via AJAX
+        function addEmployee(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('employees/add-employee', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Optionally update the table with the new employee data without reloading the page
+                        const tableBody = document.querySelector("table tbody");
+                        const newRow = document.createElement("tr");
+                        newRow.innerHTML = `
+                        <td>${data.employee.name}</td>
+                        <td>${data.employee.email}</td>
+                        <td>£ ${data.employee.salary}</td>
+                        <td>${data.employee.role}</td>
+                        <td>${data.employee.num}</td>
+                    `;
+                        tableBody.appendChild(newRow);
+
+                        // Close the modal
+                        closeModal();
+                    } else {
+                        alert('Error adding employee');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error adding employee');
+                });
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById("employeeModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</head>
+<body>
+<%- include('./header.ejs') %>
+
+<h1>Employee List</h1>
+<a href="/">
+    Go Back
+</a>
+
+<% if (employees && employees.length > 0) { %>
+    <div class="search-container">
         <input
                 type="text"
                 id="searchInput"
                 placeholder="Search by name or employee number..."
                 onkeyup="searchTable()"
         >
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Salary</th>
-                <th>Role</th>
-                <th>Employee Number</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% employees.forEach(employee => { %>
-                <tr>
-                    <td><%= employee.name %></td>
-                    <td><%= employee.email %></td>
-                    <td>£ <%= employee.salary %></td>
-                    <td><%= employee.role %></td>
-                    <td><%= employee.num %></td>
-                </tr>
-            <% }); %>
-            </tbody>
-        </table>
-    <% } else { %>
-        <p>No employees found.</p>
-    <% } %>
+        <button onclick="openModal()">Add New Employee</button>
+    </div>
 
-    <%- include('./footer.ejs') %>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Role</th>
+            <th>Employee Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% employees.forEach(employee => { %>
+            <tr>
+                <td><%= employee.name %></td>
+                <td><%= employee.email %></td>
+                <td>£ <%= employee.salary %></td>
+                <td><%= employee.role %></td>
+                <td><%= employee.num %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>No employees found.</p>
+<% } %>
+
+<!-- Modal for adding a new employee -->
+<div id="employeeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Add New Employee</h2>
+        <form id="addEmployeeForm" onsubmit="addEmployee(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary" required>
+
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required>
+
+            <label for="num">Employee Number:</label>
+            <input type="text" id="num" name="num" required>
+
+            <input type="submit" value="Add Employee">
+        </form>
+    </div>
+</div>
+
+<%- include('./footer.ejs') %>
 </body>
 </html>
