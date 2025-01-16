@@ -8,31 +8,56 @@
 </head>
 <body>
     <%- include('./header.ejs') %>
+    <title>Employees</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+        function searchTable() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const rows = document.querySelectorAll("table tbody tr");
+
+            rows.forEach(row => {
+                const name = row.querySelector("td:first-child").textContent.toLowerCase();
+                const employeeNum = row.querySelector("td:last-child").textContent.toLowerCase();
+
+                if (name.includes(input) || employeeNum.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+    </head>
+    <body>
     <h1>Employee List</h1>
 
-
     <% if (employees && employees.length > 0) { %>
+        <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by name or employee number..."
+                onkeyup="searchTable()"
+        >
         <table>
             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Salary</th>
-                    <th>Role</th>
-                    <th>Employee Number</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Role</th>
+                <th>Employee Number</th>
+            </tr>
             </thead>
             <tbody>
-                <% employees.forEach(employee => { %>
-                    <tr>
-                        <td><%= employee.name %></td>
-                        <td><%= employee.email %></td>
-                        <td>£ <%= employee.salary %></td>
-                        <td><%= employee.role %></td>
-                        <td><%= employee.num %></td>
-                    </tr>
-                <% }); %>
+            <% employees.forEach(employee => { %>
+                <tr>
+                    <td><%= employee.name %></td>
+                    <td><%= employee.email %></td>
+                    <td>£ <%= employee.salary %></td>
+                    <td><%= employee.role %></td>
+                    <td><%= employee.num %></td>
+                </tr>
+            <% }); %>
             </tbody>
         </table>
     <% } else { %>
