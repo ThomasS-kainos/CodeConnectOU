@@ -9,6 +9,18 @@ router.get('/', (req, res) => {
     res.render('login', { logins: logins });
 });
 
+// Route to handle login form submission
+router.post('/', (req, res) => {
+    const { email, password } = req.body;
+    const user = loginService.validateLogin(email, password);
+
+    if (user) {
+        res.redirect('/employees.html');
+    } else {
+        res.send('Invalid email or password');
+    }
+});
+
 module.exports = router;
 
 

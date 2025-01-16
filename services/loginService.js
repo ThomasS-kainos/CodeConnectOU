@@ -21,6 +21,11 @@ class LoginService {
         return this.readLogins();
     }
 
+    validateLogin(email, password) {
+        const logins = this.getAllLogins();
+        return logins.find(login => login.email === email && login.password === password);
+    }
+
     
 }
 
