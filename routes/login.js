@@ -15,9 +15,9 @@ router.post('/', (req, res) => {
     const user = loginService.validateLogin(email, password);
 
     if (user) {
-        res.redirect('/employees.html');
+        res.redirect('./employee');
     } else {
-        res.send('Invalid email or password');
+        res.redirect('/login');
     }
 });
 
